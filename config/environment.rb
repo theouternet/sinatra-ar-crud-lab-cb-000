@@ -11,9 +11,15 @@ def fi_check_migration
   end
 end
 
+
+
 ActiveRecord::Base.establish_connection(
   :adapter => "sqlite3",
   :database => "db/#{ENV['SINATRA_ENV']}.sqlite"
 )
+
+configure :development do
+  set :database, 'sqlite3:db/articles.db'
+end
 
 require_all 'app'
